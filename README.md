@@ -35,7 +35,7 @@ python -m venv venv
 
 venv\Scripts\activate  # On Windows
 ```
-# or
+or
 
 ```bash
 source venv/bin/activate  # On Linux/macOS
@@ -57,7 +57,7 @@ python -m uvicorn app.main:app --reload --app-dir exercise_5/
 
 http://127.0.0.1:8000/docs
 
-![API](image.png)
+![API](api_image.png)
 
 ## 📜 API Business Rules
 
@@ -74,22 +74,22 @@ The Vehicle Management API allows:
     - Vehicles grouped by decade.
     - Vehicles grouped by brand.
 
-    # 🔎 Validations
+# 🔎 Validations
 
-        - Brand Validation: Only known brands are accepted when creating or updating a vehicle.  
-        If an invalid brand is provided, the API will return a `400 Bad Request` with a clear error message.
+    - Brand Validation: Only known brands are accepted when creating or updating a vehicle.  
+    If an invalid brand is provided, the API will return a `400 Bad Request` with a clear error message.
 
-        - Full Update (PUT) Validation:  
-        When performing a full update, all required fields must be provided.  
-        If any required field is missing, the API will return a `422 Unprocessable Entity` indicating the missing data with a custom message
+    - Full Update (PUT) Validation:  
+    When performing a full update, all required fields must be provided.  
+    If any required field is missing, the API will return a `422 Unprocessable Entity` indicating the missing data with a custom message
 
-        - Partial Update (PATCH) Validation:  
-        Only the fields provided will be updated.  
-        If the brand is updated, it must pass brand validation.
+    - Partial Update (PATCH) Validation:  
+    Only the fields provided will be updated.  
+    If the brand is updated, it must pass brand validation.
 
-        - Not Found Handling:  
-        If a vehicle with the specified ID does not exist during retrieval, update, or deletion,  
-        the API will return a `404 Not Found` with a descriptive error message.
+    - Not Found Handling:  
+    If a vehicle with the specified ID does not exist during retrieval, update, or deletion,  
+    the API will return a `404 Not Found` with a descriptive error message.
 
 
 ## 📈 Test Coverage Guarantee

@@ -12,7 +12,9 @@ from sqlalchemy.orm import Session
 
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="API de Veículos - Teste Tinnova")
+app = FastAPI(
+    title="API de Veículos - Teste Tinnova"
+)
 
 
 @app.exception_handler(RequestValidationError)

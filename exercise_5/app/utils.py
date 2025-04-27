@@ -20,8 +20,14 @@ VALID_BRANDS = [
 
 
 def validate_brand(brand: str):
-    if brand not in VALID_BRANDS:
-        raise HTTPException(status_code=400, detail=f"Marca inválida. Marcas aceitas: {', '.join(VALID_BRANDS)}")
+    normalized_brand = brand.strip().lower()
+    normalized_valid_brands = [b.lower() for b in VALID_BRANDS]
+
+    if normalized_brand not in normalized_valid_brands:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Marca inválida. Marcas aceitas: {', '.join(VALID_BRANDS)}"
+        )
 
 
 def calculate_statistics(db: Session):
@@ -40,7 +46,8 @@ def calculate_statistics(db: Session):
         decade = (vehicle.ano // 10) * 10
         vehicles_by_decade[decade] += 1
 
-        vehicles_by_brand[vehicle.marca] += 1
+        normalized_brand = vehicle.marca.strip().capitalize()
+        vehicles_by_brand[normalized_brand] += 1
 
         if vehicle.created >= seven_days_ago:
             vehicles_created_last_week += 1
